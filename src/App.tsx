@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Provider} from 'react-redux'
+import store from "./store";
+import {BackTop, Layout} from 'antd';
+import {HashRouter} from "react-router-dom";
+import Header from "./common/header";
+import Footer from "./common/footer";
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+        <HashRouter>
+            <Layout>
+                <Header/>
+                <BackTop style={{
+                    height: 40,
+                    width: 40,
+                    lineHeight: '40px',
+                    borderRadius: 4,
+                    backgroundColor: '#1088e9',
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontSize: 14,
+                }}>Up</BackTop>
+                <Footer />
+            </Layout>
+        </HashRouter>
+    </Provider>
   );
 }
 
