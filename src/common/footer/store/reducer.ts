@@ -7,7 +7,7 @@ const defaultState = fromJS({
     record: ''
 });
 
-export default (state = defaultState, action:ModifyAction)=>{
+const reduce = (state = defaultState, action:ModifyAction)=>{
     switch (action.type){
         case CHANGE_RECORD:
             return state.merge({
@@ -19,3 +19,5 @@ export default (state = defaultState, action:ModifyAction)=>{
             return state;
     }
 }
+
+export default reduce;

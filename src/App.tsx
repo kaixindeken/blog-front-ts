@@ -2,9 +2,12 @@ import React from 'react';
 import {Provider} from 'react-redux'
 import store from "./store";
 import {BackTop, Layout} from 'antd';
-import {HashRouter} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import Header from "./common/header";
 import Footer from "./common/footer";
+import Share from "./pages/share";
+import Detail from "./pages/detail/loadable";
+import Result from "./pages/result/loadable";
 
 import './App.css';
 
@@ -14,6 +17,11 @@ function App() {
         <HashRouter>
             <Layout>
                 <Header/>
+
+                <Route path={'/'} exact component={Share}/>
+                <Route path={'/detail/:id'} exact component={Detail}/>
+                <Route path={'/result/:type/:id'} exact component={Result}/>
+
                 <BackTop style={{
                     height: 40,
                     width: 40,
@@ -24,6 +32,7 @@ function App() {
                     textAlign: 'center',
                     fontSize: 14,
                 }}>Up</BackTop>
+
                 <Footer />
             </Layout>
         </HashRouter>

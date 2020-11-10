@@ -6,11 +6,13 @@ const defaultState = fromJS({
     name: ''
 });
 
-export default (state = defaultState, action:ModifyAction)=>{
+const reduce =  (state = defaultState, action:ModifyAction)=>{
     switch (action.type){
         case CHANGE_NAME:
             return state.set('name',action.data);
         default:
             return state;
     }
-}
+};
+
+export default reduce;
