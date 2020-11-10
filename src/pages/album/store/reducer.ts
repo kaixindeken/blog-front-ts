@@ -6,7 +6,7 @@ const defaultState = fromJS({
     list:[]
 });
 
-export default (state = defaultState, action:ModifyAction)=>{
+const reduce = (state = defaultState, action:ModifyAction)=>{
     switch (action.type) {
         case constants.CHANGE_ALBUM:
             return state.set('list', fromJS(action.data));
@@ -14,3 +14,5 @@ export default (state = defaultState, action:ModifyAction)=>{
             return state;
     }
 }
+
+export default reduce
