@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     handleName: () => {
         axios.get(BASE_URL + 'site/name').then((res)=>{
             const result = Extract(res.data);
-            return dispatch(ChangeName(result.data.value));
+            dispatch(ChangeName(result.data.value));
         }).catch(()=>{
             console.log('error');
         });
