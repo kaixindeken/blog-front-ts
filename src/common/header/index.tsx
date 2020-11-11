@@ -8,19 +8,22 @@ import {Link} from "react-router-dom";
 import {Dispatch} from "redux";
 import axios from "axios";
 import {BASE_URL, Extract} from "../../utils/request";
-import {ChangeName} from "./store/actionCreators";
+import {actionCreators} from "./store";
 
 const { Header } = Layout;
 
 interface Props {
     name?: string,
-    handleName: ()=>void
+    list?:any,
+    handleName: ()=>void,
+    handleNav: ()=>void
 }
 
 class HeaderRM extends Component<Props>{
 
     render() {
-        const { name } = this.props;
+        const { name, list } = this.props;
+        const listData = list.toJS();
 
         return (
             <Header>
@@ -28,8 +31,13 @@ class HeaderRM extends Component<Props>{
                     <Logo>{name}</Logo>
                 </Link>
                 <Menu theme={'dark'} mode="horizontal" style={{overflow: "hidden"}}>
-                    <Menu.Item><Link to={'/'}>分享</Link></Menu.Item>
-                    <Menu.Item><Link to={'/album'}>专栏</Link></Menu.Item>
+                    {
+                        listData.map((item: any)=>{
+                            return (
+                                <Menu.Item key={item.id}><Link to={item.path}>{item.title}</Link></Menu.Item>
+                            )
+                        })
+                    }
                 </Menu>
             </Header>
         )
@@ -37,19 +45,29 @@ class HeaderRM extends Component<Props>{
 
     componentDidMount() {
         this.props.handleName();
+        this.props.handleNav()
     }
 
 }
 
-const mapStateToProps = (state: any):{name: string} => ({
-    name: state.getIn(['header','name'])
+const mapStateToProps = (state: any):{name: string,list: any} => ({
+    name: state.getIn(['header','name']),
+    list: state.getIn(['header','list'])
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     handleName: () => {
         axios.get(BASE_URL + 'site/name').then((res)=>{
             const result = Extract(res.data);
-            dispatch(ChangeName(result.data.value));
+            dispatch(actionCreators.ChangeName(result.data.value));
+        }).catch(()=>{
+            console.log('error');
+        });
+    },
+    handleNav: () => {
+        axios.get(BASE_URL + 'site/nav').then((res)=>{
+            const result = Extract(res.data);
+            dispatch(actionCreators.ChangeNav(result.data))
         }).catch(()=>{
             console.log('error');
         });
