@@ -86,7 +86,12 @@ class Detail extends PureComponent<Props>{
     }
 }
 
-const mapState= (state:any):{title:string,content:any}=>({
+interface mapStateStruct {
+    title:string,
+    content:any
+}
+
+const mapState= (state:any):mapStateStruct=>({
     title: state.getIn(['detail','title']),
     content: state.getIn(['detail','content'])
 })

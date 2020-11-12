@@ -50,7 +50,12 @@ class HeaderRM extends Component<Props>{
 
 }
 
-const mapStateToProps = (state: any):{name: string,list: any} => ({
+interface mapStateStruct {
+    name: string,
+    list: any
+}
+
+const mapStateToProps = (state: any):mapStateStruct => ({
     name: state.getIn(['header','name']),
     list: state.getIn(['header','list'])
 })

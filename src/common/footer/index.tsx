@@ -35,8 +35,12 @@ class FooterRM extends PureComponent<Props>{
 
 }
 
+interface mapStateStruct {
+    nickname:string,
+    record:string
+}
 
-const mapStateToProps = (state: any):{nickname:string, record:string} => {
+const mapStateToProps = (state: any):mapStateStruct => {
     return {
         nickname: state.getIn(['footer','nickname']),
         record: state.getIn(['footer', 'record'])

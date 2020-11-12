@@ -43,7 +43,11 @@ class AlbumList extends PureComponent<Props>{
     }
 }
 
-const mapState = (state: any):{list: any} => ({
+interface mapStateStruct {
+    list: any
+}
+
+const mapState = (state: any):mapStateStruct => ({
     list: state.getIn(['album','list'])
 });
 

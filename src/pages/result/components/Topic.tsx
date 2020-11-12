@@ -31,7 +31,12 @@ class Topic extends PureComponent<Props> {
     }
 }
 
-const mapState= (state: any):{title: string, subtitle: any}=>({
+interface mapStateStruct{
+    title: string,
+    subtitle: any
+}
+
+const mapState= (state: any):mapStateStruct=>({
     title: state.getIn(['result','title']),
     subtitle: state.getIn(['result','subtitle'])
 })
