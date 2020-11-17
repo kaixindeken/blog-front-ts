@@ -34,7 +34,11 @@ class HeaderRM extends Component<Props>{
                     {
                         listData.map((item: any)=>{
                             return (
-                                <Menu.Item key={item.id}><Link to={item.path}>{item.title}</Link></Menu.Item>
+                                <Menu.Item key={item.id}>
+                                    <Link to={item.path}>
+                                        {item.title}
+                                    </Link>
+                                </Menu.Item>
                             )
                         })
                     }
