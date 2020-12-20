@@ -2,7 +2,7 @@ import {PureComponent} from "react";
 
 class Admin extends PureComponent{
     render() {
-        window.location.href = ''
+        window.location.href = 'https://nbapi.kaixindeken.top/admin'
         return undefined;
     }
 }
